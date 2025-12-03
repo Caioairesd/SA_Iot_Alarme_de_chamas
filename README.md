@@ -13,7 +13,7 @@ SENAI.
 ## 👥 Integrantes
 
 -   **Caio Aires**
--   **Caio Battisti** *(colaborador)*
+-   **Caio Battisti** 
 
 ------------------------------------------------------------------------
 
@@ -82,7 +82,7 @@ retornar o sistema ao estado inicial.
 ### 📌 Diagrama do circuito (LCD + Módulo I2C)
 
 ![Painel LCD com Módulo
-I2C](imagens/Painel%20LCD%20+%20Módulo%20I2C.jpg)
+I2C](Imagens/Diagrama.jpg)
 
 ------------------------------------------------------------------------
 
