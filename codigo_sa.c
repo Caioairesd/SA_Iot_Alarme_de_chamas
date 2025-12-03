@@ -1,45 +1,31 @@
 #include <LiquidCrystal_I2C.h>
 
+// Endereço do LCD (0x27 ou 0x3F)
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-const int fireSensorPin = 7;
-const int resetButtonPin = 6;
-const int ledPin = 8;
-const int buzzerPin = 13;
-
-bool alarmActive = false;
+const int fireSensorPin = 7; // Sensor de chama
 
 void setup() {
-pinMode(fireSensorPin, INPUT_PULLUP);
-pinMode(resetButtonPin, INPUT_PULLUP);
-pinMode(ledPin, OUTPUT);
-pinMode(buzzerPin, OUTPUT);
+  lcd.init();
+  lcd.backlight();
 
-lcd.init();
-lcd.backlight();
-lcd.setCursor(0,0);
-lcd.print("Sistema Fogo");
+  pinMode(fireSensorPin, INPUT_PULLUP);
 
-  
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Sistema Fogo");
+  lcd.setCursor(0, 1);
+  lcd.print("Monitorando...");
 }
 
 void loop() {
-int fireDetected = digitalRead(fireSensorPin);
-int resetPressed = digitalRead(resetButtonPin);
+  int fireDetected = digitalRead(fireSensorPin);
 
-if (fireDetected == LOW) {
-alarmActive = true;
-}
-
-if (resetPressed == LOW) {
-alarmActive = false;
-}
-
-if (alarmActive) {
-digitalWrite(ledPin, HIGH);
-tone(buzzerPin, 1500);
-} else {
-digitalWrite(ledPin, LOW);
-noTone(buzzerPin);
-}
+  if (fireDetected == LOW) {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("ALERTA!");
+    lcd.setCursor(0, 1);
+    lcd.print("FOGO DETECTADO");
+  }
 }
