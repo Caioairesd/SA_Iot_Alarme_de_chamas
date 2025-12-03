@@ -1,3 +1,7 @@
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
 const int fireSensorPin = 7;
 const int resetButtonPin = 6;
 const int ledPin = 8;
@@ -10,6 +14,13 @@ pinMode(fireSensorPin, INPUT_PULLUP);
 pinMode(resetButtonPin, INPUT_PULLUP);
 pinMode(ledPin, OUTPUT);
 pinMode(buzzerPin, OUTPUT);
+
+lcd.init();
+lcd.backlight();
+lcd.setCursor(0,0);
+lcd.print("Sistema Fogo");
+
+  
 }
 
 void loop() {
